@@ -1,13 +1,35 @@
+
 const express = require('express')
 const app = express()
 const bodyparser = require('body-parser')
 const mongoClient = require('mongodb').MongoClient
 
-const url = "mongodb+srv://atlasadmin:admin@confessiontier0-f1hy6.mongodb.net/test?retryWrites=true&w=majority";
+const url = "mongodb+srv://admin:admin@cluster0-cwkdp.mongodb.net/test?retryWrites=true&w=majority";
 
 
 app.use(bodyparser.urlencoded({ extended: false }))
 app.use(bodyparser.json())
+
+
+app.post('/addnews',async function(req,res)
+{
+  try
+  {
+ 
+  console.log(req.body);
+  const client = await mongoClient.connect(url);
+  let news = req.body;
+  news.postedOn=new Date();
+  console.log(news);
+  let db = client.db("vnpsfinserv")
+  let result = await db.collection('news').insertOne(news);
+  res.send(result);}
+  catch(err)
+  {
+    res.send(err)
+  }
+
+});
 
 
 app.get('/simpleget', async function(req, res) {
@@ -64,4 +86,4 @@ app.get('/login', async function(req, res) {
 });
 
 app.listen(8082)
-console.log('hosted on 8081')
+console.log('hosted on 8082')
