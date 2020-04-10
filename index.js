@@ -10,6 +10,10 @@ const url = "mongodb+srv://admin:admin@cluster0-cwkdp.mongodb.net/test?retryWrit
 app.use(bodyparser.urlencoded({ extended: false }))
 app.use(bodyparser.json())
 
+app.get('/newsadd', async function(req,res)
+{
+  res.sendfile('addnews.html');
+});
 
 app.post('/addnews',async function(req,res)
 {
