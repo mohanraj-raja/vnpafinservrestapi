@@ -13,7 +13,16 @@
   function addnews()
   {
     alert("hi");
-    $.post('/addnews');
+    var data = { "user" : "me!" };
+$.ajax({
+    type: "POST",
+    url: "/addnews",
+    processData: false,
+    contentType: 'application/json',
+    data: {'':JSON.stringify(data)},
+    success: function(r) {
+    }
+});
   }
   </script>
   </head>
@@ -42,7 +51,7 @@
   <textarea class="form-control" rows="5" id="comment"></textarea>
   
 </div>
-<button type="submit" class="btn btn-success" onclick="addnews()">Add News</button>
+<button type="button" class="btn btn-success" onclick="addnews()">Add News</button>
 </div>
   </body>
 </html>

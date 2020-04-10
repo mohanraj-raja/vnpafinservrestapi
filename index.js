@@ -19,7 +19,7 @@ app.post('/addnews',async function(req,res)
 {
   try
   {
- 
+    console.log(req);
   console.log(req.body);
   const client = await mongoClient.connect(url);
   let news = req.body;
