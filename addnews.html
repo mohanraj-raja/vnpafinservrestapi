@@ -13,15 +13,18 @@
   function addnews()
   {
     alert("hi");
-    var data = { "user" : "me!" };
-$.ajax({
-    type: "POST",
-    url: "/addnews",
-    processData: false,
-    contentType: 'application/json',
-    data: {'':JSON.stringify(data)},
-    success: function(r) {
-    }
+   var settings = {
+  "url": "https://vnpafinservrestapi--mohanrajraja.repl.co/addnews",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": JSON.stringify({"title":"hdfc market hype","description":"about hdfc market hype"}),
+};
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
 });
   }
   </script>
