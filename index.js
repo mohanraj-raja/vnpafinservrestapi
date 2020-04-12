@@ -19,7 +19,7 @@ app.post('/addnews',async function(req,res)
 {
   try
   {
-  const client = await mongoClient.connect(url,{ useNewUrlParser: true });
+  const client = await mongoClient.connect(url,{ useNewUrlParser: true,useUnifiedTopology: true});
   let news = req.body;
   news.postedOn=new Date();
   console.log(req.body);
@@ -37,9 +37,9 @@ app.get('/getNews',async function(req,res)
 {
 try
   {
-  const client = await mongoClient.connect(url,{ useNewUrlParser: true });
+  const client = await mongoClient.connect(url,{ useNewUrlParser: true,useUnifiedTopology: true });
   let db = client.db("vnpsfinserv")
-  let users = await db.collection("news").find({});
+  let users = await db.collection("news").find().toArray();
   res.send(users);}
   catch(err)
   {
