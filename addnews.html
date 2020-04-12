@@ -12,15 +12,15 @@
 <script>
   function addnews()
   {
-    alert("hi");
+    var data={'title':$('#title').val(),'description':$('#description').val()};
    var settings = {
-  "url": "https://vnpafinservrestapi--mohanrajraja.repl.co/addnews",
+  "url": "/addnews",
   "method": "POST",
   "timeout": 0,
   "headers": {
     "Content-Type": "application/json"
   },
-  "data": JSON.stringify({"title":"hdfc market hype","description":"about hdfc market hype"}),
+  "data": JSON.stringify(data),
 };
 
 $.ajax(settings).done(function (response) {
@@ -49,9 +49,9 @@ $.ajax(settings).done(function (response) {
   <div class="container">
   <div class="form-group">
     <label for="usr">Flyer Message:</label>
-  <input type="text" class="form-control" id="usr">
+  <input type="text" class="form-control" id="title">
   <label for="comment">Description:</label>
-  <textarea class="form-control" rows="5" id="comment"></textarea>
+  <textarea class="form-control" rows="5" id="description"></textarea>
   
 </div>
 <button type="button" class="btn btn-success" onclick="addnews()">Add News</button>
