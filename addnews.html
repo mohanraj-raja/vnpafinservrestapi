@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+</script>
+<!-- Latest compiled JavaScript -->
+<scriptsrc="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/JavaScript" src="index.js"></script>
+<script>
+  function addnews()
+  {
+    if($('#title').val()==='')
+    alert("Please add Title");
+    else if($('#description').val()==='')
+    alert("Please add Description");
+    else
+    {
+
+  var data={'title':$('#title').val(),'description':$('#description').val()};
+   var settings = {
+  "url": "/addnews",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": JSON.stringify(data),
+};
+
+$.ajax(settings).done(function (response) {
+  $('#title').val("");
+  $('#description').val("");
+  alert("News added Successfully");
+});}
+  }
+  </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">VNPA FINSERV</a>
+    </div>
+  
+  </div>
+</nav>
+<div class="page-header">
+    <h4>Add Stock Update News</h4>
+  </div>
+  <div class="container">
+  <div class="form-group">
+    <label for="usr">Flyer Message:</label>
+  <input type="text" class="form-control" id="title">
+  <label for="comment">Description:</label>
+  <textarea class="form-control" rows="5" id="description"></textarea>
+  
+</div>
+<button type="button" class="btn btn-success" onclick="addnews()">Add News</button>
+</div>
+  </body>
+</html>
