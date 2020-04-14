@@ -30,7 +30,6 @@ app.post('/addnews',async function(req,res)
   const client = await mongoClient.connect(url,{ useNewUrlParser: true,useUnifiedTopology: true});
   let news = req.body;
   news.postedOn=new Date();
-  console.log(req.body);
   let db = client.db("vnpsfinserv")
   let result = await db.collection('news').insertOne(news);
   res.send(result);}

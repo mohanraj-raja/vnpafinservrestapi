@@ -12,7 +12,14 @@
 <script>
   function addnews()
   {
-    var data={'title':$('#title').val(),'description':$('#description').val()};
+    if($('#title').val()==='')
+    alert("Please add Title");
+    else if($('#description').val()==='')
+    alert("Please add Description");
+    else
+    {
+
+  var data={'title':$('#title').val(),'description':$('#description').val()};
    var settings = {
   "url": "/addnews",
   "method": "POST",
@@ -24,8 +31,10 @@
 };
 
 $.ajax(settings).done(function (response) {
-  console.log(response);
-});
+  $('#title').val("");
+  $('#description').val("");
+  alert("News added Successfully");
+});}
   }
   </script>
   </head>
